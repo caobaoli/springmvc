@@ -1,0 +1,15 @@
+body {
+		background-color: #EEEEEE;
+	}
+	
+.error {
+	background-color: #F9F9F9;
+	margin: 220px;
+}
+
+.model {
+	text-align: center;
+	font-size: 140px;
+	color: #28B779;
+	cursor: pointer;
+}

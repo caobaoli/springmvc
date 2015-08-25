@@ -8,7 +8,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
          <typeAlias alias="User" type="com.lxp.springmvc.vo.User"/>
     </typeAliases>
  
-    <!-- 映射map -->
+    <!-- 映射map 在spring-mvc中已配置自动读取mapper中的配置文件-->
     <mappers>
     </mappers>
 </configuration>
