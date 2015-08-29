@@ -1,5 +1,7 @@
 package com.lxp.springmvc.service.impl;
 
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,7 +26,15 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	@Override
 	public int add(User user) {
+		String id = UUID.randomUUID().toString();
+		user.setId(id);
 		return userDao.insertUser(user);
+	}
+
+	@Transactional
+	@Override
+	public User findByAccount(String account) {
+		return userDao.selectByAccount(account);
 	}
 
 }

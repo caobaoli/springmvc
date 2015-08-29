@@ -4,8 +4,14 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lxp.springmvc.dao.UserDao">
 
+	<!-- Insert User -->
 	<insert id="insertUser" parameterType="User" keyProperty="id">
-		insert into user(userName, userAge, userAddress) values( #{username}, #{userage}, #{useraddress})
+		INSERT INTO USER(ID, ACCOUNT, PASS, EMAIL, SEX, BIRTHDAY) VALUE(#{id}, #{account}, #{pass}, #{email}, #{sex}, #{date})
 	</insert>
+	
+	<!-- Select BY Account -->
+	<select id="selectByAccount" parameterType="string" resultType="User">
+	    SELECT ID, ACCOUNT, PASS, EMAIL, SEX, BIRTHDAY FROM USER WHERE ACCOUNT = #{account}
+	</select>
 
 </mapper>

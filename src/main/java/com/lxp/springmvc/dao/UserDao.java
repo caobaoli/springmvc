@@ -11,4 +11,5 @@ import com.lxp.springmvc.vo.User;
  */
 public interface UserDao {
 	public int insertUser(User user);
+	public User selectByAccount(String account);
 }

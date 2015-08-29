@@ -1,19 +1,22 @@
-package com.lxp.springmvc.controller;
+package com.lxp.springmvc.controller.home;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
- * @Package com.lxp.springmvc.controller
- * @Class com.lxp.springmvc.controller.UserController
+ * @Package com.lxp.springmvc.controller.home
+ * @Class com.lxp.springmvc.controller.home.HomeAction
  * @Description: TODO
  * @Author LiXiaoPeng
  * Copyright  Corporation 2015
  */
+
 @Controller
-public class UserController {
+@RequestMapping(value="/")
+public class HomeAction {
+
 	@RequestMapping(value="index")
-	public String index() {
+	public String home() {
 		return "index";
 	}
 }
