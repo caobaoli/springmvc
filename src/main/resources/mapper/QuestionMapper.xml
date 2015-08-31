@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lxp.springmvc.dao.QuestionDao">
+
+	<resultMap type="Question" id="resultListQuestion">
+		<id column="ID" property="id" jdbcType="INTEGER"/>
+        <result column="TITLE" property="title" jdbcType="VARCHAR"/>
+        <result column="CONTENT" property="content" jdbcType="VARCHAR"/>
+        <result column="USER" property="user" jdbcType="VARCHAR"/>
+        <result column="DATE" property="date" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<!-- Insert Question -->
+	<insert id="insertQuestion" parameterType="Question" keyProperty="id">
+		INSERT INTO QUESTION(TITLE, CONTENT, USER, DATE) VALUE(#{title}, #{content}, #{user}, #{date})
+	</insert>
+	
+	<!-- Select Question -->
+	<select id="selectQuestion"  resultMap="resultListQuestion">
+	    select ID, TITLE, CONTENT, USER, DATE from QUESTION ORDER BY DATE DESC LIMIT 0,5
+	</select>
+	
+	
+</mapper>

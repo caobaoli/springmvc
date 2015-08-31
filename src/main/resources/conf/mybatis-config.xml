@@ -6,6 +6,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         <!-- 命名空间 -->
     <typeAliases>
          <typeAlias alias="User" type="com.lxp.springmvc.vo.User"/>
+         <typeAlias alias="Question" type="com.lxp.springmvc.vo.Question"/>
     </typeAliases>
  
     <!-- 映射map 在spring-mvc中已配置自动读取mapper中的配置文件-->

@@ -24,6 +24,7 @@ $(function () {
 	$('#question_button').click(function() {
 		if($.cookie('user')) {
 			$('#question').dialog('open');
+			$('.uEditorIframe').contents().find('#iframeBody').html('');
 		} else {
 			$('#error').dialog('open');
 			setTimeout(function() {
@@ -47,6 +48,50 @@ $(function () {
 	}).parent().find('.ui-widget-header').hide();
 	
 	/**
+	 * 加载问题
+	 */
+	$.ajax({
+		url : 'question/findquestion.do',
+		type : 'POST',
+		success : function (response, status, xhr) {
+			var json = $.parseJSON(response);
+			var html = '';
+			var arr = [];
+			$.each(json, function (index, value) {
+				html += '<h4>' + value.user + ' 发表于 ' + value.date + '</h4><h3>' + value.title + '</h3><div class="editor">' + value.content + '</div><div class="bottom">0条评论 <span class="down">显示全部</span><span class="up">收起</span></div><hr noshade="noshade" size="1" />';
+			});
+			$('.content').append(html);
+			
+			$.each($('.editor'), function (index, value) {
+				arr[index] = $(value).height();
+				if ($(value).height() > 24) {
+					$(value).next('.bottom').find('.up').hide();
+				}
+				$(value).height(24);
+			});
+			
+			$.each($('.bottom .down'), function (index, value) {
+				$(this).click(function () {
+					$(this).parent().prev().height(arr[index]);
+					$(this).hide();
+					$(this).parent().find('.up').show();
+				});
+			});
+			
+			$.each($('.bottom .up'), function (index, value) {
+				$(this).click(function () {
+					$(this).parent().prev().height(24);
+					$(this).hide();
+					$(this).parent().find('.down').show();
+				});
+			});
+			
+		},
+	});
+	
+	
+	
+	/**
 	 * 问题提出的dialog
 	 */
 	$('#question').dialog({
@@ -54,13 +99,37 @@ $(function () {
 		modal : true,
 		resizable : false,
 		width : 500,
-		height : 360,
-		closeText : '关闭',
+		height : 410,
 		buttons : {
 			'发布' : function () {
-				$(this).submit();
+				$(this).ajaxSubmit({
+					url : 'question/addquestion.do',
+					type : 'POST',
+					data : {
+						user : $.cookie('user'),
+						content : $('.uEditorIframe').contents().find('#iframeBody').html(),
+					},
+					beforeSubmit : function (formData, jqForm, options) {
+						$('#loading').dialog('open');
+						$('#question').dialog('widget').find('button').eq(1).button('disable');
+					},
+					success : function (responseText, statusText) {
+						if (responseText) {
+							$('#question').dialog('widget').find('button').eq(1).button('enable');
+							$('#loading').css('background', 'url(assets/img/success.gif) no-repeat 20px center').html('数据新增成功...');
+							setTimeout(function () {
+								$('#loading').dialog('close');
+								$('#question').dialog('close');
+								$('#question').resetForm();
+								$('#loading').css('background', 'url(assets/img/loading.gif) no-repeat 20px center').html('数据交互中...');
+								//完美解决提交问题重新加载的问题
+								location = "index.do";
+							}, 1000);
+						}
+					},
+				});
 			}
-		},
+		}
 	});
 	
 	/**
@@ -406,6 +475,7 @@ $(function () {
 			},
 		}
 	});
+	
 });
 
 
