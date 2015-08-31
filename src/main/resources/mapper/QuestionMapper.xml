@@ -19,7 +19,7 @@
 	
 	<!-- Select Question -->
 	<select id="selectQuestion"  resultMap="resultListQuestion">
-	    select ID, TITLE, CONTENT, USER, DATE from QUESTION ORDER BY DATE DESC LIMIT 0,5
+	    select ID, TITLE, CONTENT, USER, DATE from QUESTION ORDER BY DATE DESC LIMIT 0,10
 	</select>
 	
 	
