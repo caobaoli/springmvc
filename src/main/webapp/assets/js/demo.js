@@ -60,7 +60,7 @@ $(function () {
 			var arr = [];
 			var summary = [];
 			$.each(json, function (index, value) {
-				html += '<h4>' + value.user + ' 发表于 ' + value.date + '</h4><h3>' + value.title + '</h3><div class="editor">' + value.content + '</div><div class="bottom">0条评论 <span class="up">收起</span></div><hr noshade="noshade" size="1" />';
+				html += '<h4>' + value.user + ' 发表于 ' + value.date + '</h4><h3>' + value.title + '</h3><div class="editor">' + value.content + '</div><div class="bottom"><span class="comment">0条评论</span><span class="up">收起</span></div><hr noshade="noshade" size="1" /><div class="comment_list"></div>';
 			});
 			$('.content').append(html);
 			
@@ -96,6 +96,32 @@ $(function () {
 					$('.editor').eq(index).html(summary[index]);
 					$(this).hide();
 					$('.editor .down').eq(index).show();
+				});
+			});
+			
+			$.each($('.bottom'), function (index, value) {
+				$(this).on('click', '.comment', function () {
+					if ($.cookie('user')) {
+						if (!$('.comment_list').eq(index).has('form').length) {
+							$('.comment_list').eq(index).append('<form><dl class="comment_add"><dt><textarea name="comment"></textarea></dt><dd><input type="button" value="发表" /></dd></dl></form>');
+							$('#search_button').button({
+								icons : {
+									primary : 'ui-icon-search',
+								},
+							});
+						}
+						if ($('.comment_list').eq(index).is(':hidden')) {
+							$('.comment_list').eq(index).show();
+						} else {
+							$('.comment_list').eq(index).hide();
+						}
+					} else {
+						$('#error').dialog('open');
+						setTimeout(function () {
+							$('#error').dialog('close');
+							$('#login').dialog('open');
+						}, 1000);
+					}
 				});
 			});
 		

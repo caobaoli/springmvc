@@ -200,6 +200,59 @@ body {
 	color:#ccc;
 	height:1px;
 }
+
+
+/*************显示、发表评论-START*****************/
+.content .comment {
+	color:#369;
+	cursor:pointer;
+}
+.content .comment_list {
+	border:1px solid #ccc;
+	border-radius:4px;
+	padding:5px 10px;
+	display:none;
+}
+.content .comment_list dl {
+	margin:0;
+	padding:3px 0px 5px 0;
+}
+.content .comment_list dl dt {
+	margin:0;
+	padding:5px 0 0 0;
+	color:#369;
+}
+.content .comment_list dl dd {
+	margin:0;
+	padding:0;
+	color:#333;
+	line-height:180%;
+}
+.content .comment_list dl dd.date {
+	color:#666;
+}
+.content .comment_list dl.comment_content {
+	border-bottom:1px solid #ccc;
+}
+.content .comment_add {
+	text-align:right;
+}
+.content .comment_add textarea {
+	width:98%;
+	border:1px solid #ccc;
+	border-radius:4px;
+	background:#fff;
+	padding:5px;
+	font-size:12px;
+	color:#666;
+	resize:none;
+}
+.content .comment_add input {
+	cursor:pointer;
+}
+/************显示、发表评论-END*****************/
+
+
 .content .up {
 	float:right;
 	color:#369;
@@ -211,6 +264,8 @@ body {
 	cursor:pointer;
 }
 
+
+/***********最新动态及设置（页首）-START***************/
 #tabs hr {
 	color:#ccc;
 	height:1px;
@@ -226,7 +281,7 @@ body {
 	color: #999;
 	width: 30px;
 }
-
+/***********最新动态及设置（页首）-END***************/
 
 
 
