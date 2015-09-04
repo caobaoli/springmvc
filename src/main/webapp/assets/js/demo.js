@@ -60,7 +60,7 @@ $(function () {
 			var arr = [];
 			var summary = [];
 			$.each(json, function (index, value) {
-				html += '<h4>' + value.user + ' 发表于 ' + value.date + '</h4><h3>' + value.title + '</h3><div class="editor">' + value.content + '</div><div class="bottom"><span class="comment">0条评论</span><span class="up">收起</span></div><hr noshade="noshade" size="1" /><div class="comment_list"></div>';
+				html += '<h4>' + value.user + ' 发表于 ' + value.date + '</h4><h3>' + value.title + '</h3><div class="editor">' + value.content + '</div><div class="bottom"><span class="comment" data-id="'+ value.id +'">0条评论</span><span class="up">收起</span></div><hr noshade="noshade" size="1" /><div class="comment_list"></div>';
 			});
 			$('.content').append(html);
 			
@@ -103,11 +103,29 @@ $(function () {
 				$(this).on('click', '.comment', function () {
 					if ($.cookie('user')) {
 						if (!$('.comment_list').eq(index).has('form').length) {
-							$('.comment_list').eq(index).append('<form><dl class="comment_add"><dt><textarea name="comment"></textarea></dt><dd><input type="button" value="发表" /></dd></dl></form>');
-							$('#search_button').button({
-								icons : {
-									primary : 'ui-icon-search',
-								},
+							$('.comment_list').eq(index).append('<form><dl class="comment_add"><dt><textarea name="comment"></textarea></dt><dd><input type="hidden" name="titleid" value="' + $(this).attr('data-id') + '" /><input type="hidden" name="user" value="' + $.cookie('user') + '" /><input type="button" value="发表" /></dd></dl></form>');
+							/*******提交评论*******/
+							$('.comment_list').eq(index).find('input[type=button]').button().click(function (){
+								var _this = this;
+								$('.comment_list').eq(index).find('form').ajaxSubmit({
+									url: 'comment/addcomment.do',
+									type: 'POST',
+									beforeSubmit : function (formData, jqForm, options) {
+										$('#loading').dialog('open');
+										$(_this).button('disable');
+									},
+									success : function (responseText, statusText) {
+										if (responseText) {
+											$(_this).button('enable');
+											$('#loading').css('background', 'url(assets/img/success.gif) no-repeat 20px center').html('评论新增成功...');
+											setTimeout(function () {
+												$('#loading').dialog('close');
+												$('.comment_list').eq(index).find('form').resetForm();
+												$('#loading').css('background', 'url(assets/img/loading.gif) no-repeat 20px center').html('数据交互中...');
+											}, 1000);
+										}
+									},
+								});
 							});
 						}
 						if ($('.comment_list').eq(index).is(':hidden')) {

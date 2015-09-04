@@ -49,7 +49,7 @@ public class QuestionController {
 	public void findQuestion(HttpServletResponse response, PrintWriter out) {
 		List<Question> list = questionService.findAllQuestion();
 		if(!list.isEmpty()) {
-			 response.setContentType("text/html;charset=UTF-8");
+			response.setContentType("text/html;charset=UTF-8");
 			JSONArray jsonArray = JSONArray.fromObject(list);
 			out.print(jsonArray);
 		}
