@@ -38,6 +38,7 @@ public class TestQuestionService {
 	@Test
 	public void testFindAll() {
 		List<Question> list = questionService.findAllQuestion();
+		System.out.println(list.get(0).getCount());
 		System.out.println(list.size());
 	}
 }

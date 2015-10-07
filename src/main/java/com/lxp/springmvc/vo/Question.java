@@ -16,6 +16,14 @@ public class Question implements Serializable {
 	private String content;
 	private String user;
 	private String date;
+	private Integer count;
+	
+	public Integer getCount() {
+		return count;
+	}
+	public void setCount(Integer count) {
+		this.count = count;
+	}
 	public Integer getId() {
 		return id;
 	}

@@ -251,6 +251,9 @@ body {
 .content .comment_add input {
 	cursor:pointer;
 }
+.content .comment_load dd {
+	background:url(../img/comment_load.gif) no-repeat 75px 45%;
+}
 /************显示、发表评论-END*****************/
 
 

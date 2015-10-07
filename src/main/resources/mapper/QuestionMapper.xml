@@ -6,6 +6,7 @@
 
 	<resultMap type="Question" id="resultListQuestion">
 		<id column="ID" property="id" jdbcType="INTEGER"/>
+		<result column="COUNT" property="count" jdbcType="INTEGER"/>
         <result column="TITLE" property="title" jdbcType="VARCHAR"/>
         <result column="CONTENT" property="content" jdbcType="VARCHAR"/>
         <result column="USER" property="user" jdbcType="VARCHAR"/>
@@ -19,7 +20,7 @@
 	
 	<!-- Select Question -->
 	<select id="selectQuestion"  resultMap="resultListQuestion">
-	    SELECT ID, TITLE, CONTENT, USER, DATE FROM QUESTION ORDER BY DATE DESC LIMIT 0,10
+	    SELECT Q.ID, (SELECT COUNT(*) FROM COMMENT WHERE TITLEID=Q.ID) AS COUNT, Q.TITLE, Q.CONTENT, Q.USER, Q.DATE FROM QUESTION Q ORDER BY Q.DATE DESC LIMIT 0,10
 	</select>
 	
 	
