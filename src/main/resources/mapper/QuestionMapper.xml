@@ -23,5 +23,10 @@
 	    SELECT Q.ID, (SELECT COUNT(*) FROM COMMENT WHERE TITLEID=Q.ID) AS COUNT, Q.TITLE, Q.CONTENT, Q.USER, Q.DATE FROM QUESTION Q ORDER BY Q.DATE DESC LIMIT 0,10
 	</select>
 	
+	<!-- Search Question -->
+	<select id="searchQuestion" resultMap="resultListQuestion">
+	    SELECT Q.ID, (SELECT COUNT(*) FROM COMMENT WHERE TITLEID=Q.ID) AS COUNT,
+ 			Q.TITLE, Q.CONTENT, Q.USER, Q.DATE FROM QUESTION Q WHERE Q.TITLE LIKE '%${questionKey}%' ORDER BY Q.DATE DESC LIMIT 0,10
+	</select>
 	
 </mapper>

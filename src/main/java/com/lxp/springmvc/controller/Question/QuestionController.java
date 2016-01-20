@@ -34,10 +34,25 @@ public class QuestionController {
 	 */
 	@RequestMapping(value="addquestion")
 	public void addQuestion(PrintWriter out, Question question) {
+		String content = question.getContent();
+		if(!"".equals(content) && content != null) {
+			content = content.substring(1, content.length()-1);
+			question.setContent(content);
+		}
 		if(questionService.addQuestion(question)!=1) {
 			out.print("false");
 		} else {
 			out.print("true");
+		}
+	}
+	
+	@RequestMapping(value="searchquestion")
+	public void searchQuestion(HttpServletResponse response, PrintWriter out, String questionKey) {
+		List<Question> list = questionService.searchQuestion(questionKey);
+		if(!list.isEmpty()) {
+			response.setContentType("text/html;charset=UTF-8");
+			JSONArray jsonArray = JSONArray.fromObject(list);
+			out.print(jsonArray);
 		}
 	}
 	

@@ -40,4 +40,10 @@ public class QuestionServiceImpl implements QuestionService {
 		return questionDao.selectQuestion();
 	}
 
+	@Transactional(readOnly = true)
+	@Override
+	public List<Question> searchQuestion(String questionKey) {
+		return questionDao.searchQuestion(questionKey);
+	}
+
 }

@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>知乎前端开发</title>
+<title>文理论坛</title>
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="this is my page">
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -27,9 +27,9 @@
 <body>
 	<div id="header">
 		<div class="header_main">
-			<h1>知乎</h1>
+			<h1>文理论坛</h1>
 			<div class="header_search">
-				<input type="text" name="search" class="search" />
+				<input type="text" name="search" class="search" id="searchQuestion" required="true"/>
 			</div>
 			<div class="header_button">
 				<button id="search_button">搜索</button>

@@ -2,6 +2,8 @@ package com.lxp.springmvc.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.lxp.springmvc.vo.Question;
 
 /**
@@ -14,4 +16,5 @@ import com.lxp.springmvc.vo.Question;
 public interface QuestionDao {
 	public Integer insertQuestion(Question question);
 	public List<Question> selectQuestion();
+	public List<Question> searchQuestion(@Param("questionKey")String questionKey);
 }
