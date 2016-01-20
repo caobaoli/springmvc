@@ -25,7 +25,7 @@ public class CommentServiceImpl implements CommentService {
 	@Autowired
 	private CommentDao commentDao;
 	
-	@Transactional
+	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public Integer addComment(Comment comment) {
 		Date date = new Date();
@@ -34,7 +34,7 @@ public class CommentServiceImpl implements CommentService {
 		return commentDao.insertComment(comment);
 	}
 
-	@Transactional
+	@Transactional(readOnly = true)
 	@Override
 	public List<Comment> findAllComment() {
 		return commentDao.selectComment();

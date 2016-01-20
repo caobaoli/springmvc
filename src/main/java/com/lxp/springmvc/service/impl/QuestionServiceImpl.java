@@ -25,7 +25,7 @@ public class QuestionServiceImpl implements QuestionService {
 	@Autowired
 	private QuestionDao questionDao;
 	
-	@Transactional
+	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public Integer addQuestion(Question question) {
 		Date date = new Date();
@@ -34,7 +34,7 @@ public class QuestionServiceImpl implements QuestionService {
 		return questionDao.insertQuestion(question);
 	}
 
-	@Transactional
+	@Transactional(readOnly = true)
 	@Override
 	public List<Question> findAllQuestion() {
 		return questionDao.selectQuestion();

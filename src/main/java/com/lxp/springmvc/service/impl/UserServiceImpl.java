@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDao userDao;
 	
-	@Transactional
+	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public int add(User user) {
 		String id = UUID.randomUUID().toString();
@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
 		return userDao.insertUser(user);
 	}
 
-	@Transactional
+	@Transactional(readOnly = true)
 	@Override
 	public User findByAccount(String account) {
 		return userDao.selectByAccount(account);

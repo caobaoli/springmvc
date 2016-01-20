@@ -195,6 +195,7 @@
 						<!-- 解决jetty启动更改js无法保存的问题 -->
 						<defaultsDescriptor>src/main/resources/conf/webdefault.xml</defaultsDescriptor>
 					</webAppConfig>
+					<!-- 当代码有更改时jetty服务器会在三秒内重启，知道内存溢出 -->
 					<scanIntervalSeconds>3</scanIntervalSeconds>
 				</configuration>
 			</plugin>
