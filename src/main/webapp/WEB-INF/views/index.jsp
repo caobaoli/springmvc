@@ -29,7 +29,7 @@
 		<div class="header_main">
 			<h1>文理论坛</h1>
 			<div class="header_search">
-				<input type="text" name="search" class="search" id="searchQuestion" required="true"/>
+				<input type="text" name="search" class="search" id="searchQuestion" placeholder="搜索问题" required="required"/>
 			</div>
 			<div class="header_button">
 				<button id="search_button">搜索</button>
