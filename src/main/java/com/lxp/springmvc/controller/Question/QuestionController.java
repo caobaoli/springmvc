@@ -46,14 +46,47 @@ public class QuestionController {
 		}
 	}
 	
+	/**
+	 * search question
+	 * @param response
+	 * @param out
+	 * @param questionKey
+	 */
 	@RequestMapping(value="searchquestion")
 	public void searchQuestion(HttpServletResponse response, PrintWriter out, String questionKey) {
 		List<Question> list = questionService.searchQuestion(questionKey);
 		if(!list.isEmpty()) {
+			for (Question question : list) {
+				String questionTitle = question.getTitle();
+//				int firstLocation = questionTitle.indexOf(questionKey);
+//				String preQuestionTitle = questionTitle.substring(0, firstLocation);
+//				String sufQuestionTitle = questionTitle.substring(firstLocation+questionKey.length(), questionTitle.length());
+//				String title = preQuestionTitle+"<span style=\"color:red;\">"+questionKey+"</span>"+sufQuestionTitle;
+//				question.setTitle(title);
+				question.setTitle(obtainString(questionKey, questionTitle));
+			}
 			response.setContentType("text/html;charset=UTF-8");
 			JSONArray jsonArray = JSONArray.fromObject(list);
 			out.print(jsonArray);
 		}
+	}
+	
+	/**
+	 * 运用递归给Title中搜索关键字标红
+	 * @param questionKey
+	 * @param surplus
+	 * @return
+	 */
+	public String obtainString(String questionKey, String surplus) {
+		int firstLocation = surplus.indexOf(questionKey);
+		String preQuestionTitle = surplus.substring(0, firstLocation);
+		String sufQuestionTitle = surplus.substring(firstLocation+questionKey.length(), surplus.length());
+		String middleQuestionTitle = sufQuestionTitle;
+		if((sufQuestionTitle.indexOf(questionKey))>0) {
+			middleQuestionTitle = obtainString(questionKey, sufQuestionTitle);
+		}
+		String title = preQuestionTitle+"<span style=\"color:red;\">"+questionKey+"</span>"+middleQuestionTitle;
+		return title;
 	}
 	
 	/**

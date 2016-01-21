@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.lxp.springmvc.dao.UserDao;
 import com.lxp.springmvc.service.UserService;
 import com.lxp.springmvc.vo.User;
-import com.mysql.fabric.xmlrpc.base.Data;
 
 /**
  * @Package com.lxp.springmvc.service.impl

@@ -28,7 +28,6 @@ public class UserController {
 	 */
 	@RequestMapping(value="registuser")
 	public void registUser(PrintWriter out, String param, User tempuser) {
-		System.out.println(param);
 		if("reg".equals(param)) {
 			userService.add(tempuser);
 			out.print("true");
