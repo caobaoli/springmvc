@@ -57,15 +57,21 @@
 		</div>
 		<div class="main_right">
 			<div id="accordion">
-				<h3>菜单1</h3>
+				<h3>近期热议</h3>
 				<div>
-					<p>内容1</p>
-					<p>内容1</p>
+					<div><a href="#" class="btn">内容1</a></div>
+					<div><a href="#" class="btn">内容2</a></div>
 				</div>
-				<h3>菜单2</h3>
-				<div>内容2</div>
-				<h3>菜单3</h3>
-				<div>内容3</div>
+				<h3>随便看看</h3>
+					<div><a href="#" class="btn">内容1</a></div>
+					<div><a href="#" class="btn">内容2</a></div>
+				<h3>个人信息</h3>
+				<div>
+					<p><a href="#" class="btn"  >个人基本信息</a></p>
+				</div>
+				<h3>我的校园</h3>
+				<div><a href="#" class="btn">内容1</a></div>
+				<div><a href="#" class="btn">内容2</a></div>
 			</div>
 		</div>
 	</div>

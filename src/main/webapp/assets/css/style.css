@@ -287,6 +287,15 @@ body {
 }
 /***********最新动态及设置（页首）-END***************/
 
+/**************超链接-START****************/
+.btn {
+	text-decoration: none;
+	color:#abcdef; 
+	width:35px;
+	height:35px;
+	padding-left:12%;
+}
+/***************超链接-END*******************/
 
 
 
