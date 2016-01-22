@@ -19,4 +19,9 @@ public class HomeAction {
 	public String home() {
 		return "index";
 	}
+	
+	@RequestMapping(value="detail")
+	public String questionDetail() {
+		return "quest_detail";
+	}
 }
