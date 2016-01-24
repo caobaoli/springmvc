@@ -32,7 +32,7 @@ public class CommentController {
 	 * 提交评论
 	 */
 	@RequestMapping(value="addcomment")
-	public void addComment(Comment comment, PrintWriter out) {
+	public void addComment(PrintWriter out, Comment comment) {
 		if(commentService.addComment(comment)==1) {
 			out.print("true");
 		} else {
@@ -44,9 +44,15 @@ public class CommentController {
 	 * 获取评论
 	 * @param
 	 */
+	@SuppressWarnings("static-access")
 	@RequestMapping(value="findcomment")
-	public void findComment(HttpServletResponse response, PrintWriter out) {
-		List<Comment> list = commentService.findAllComment();
+	public void findComment(HttpServletResponse response, PrintWriter out,String titleId) {
+			try {
+				Thread.currentThread().sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		List<Comment> list = commentService.findCommentById(titleId);
 		if(!list.isEmpty()) {
 			response.setContentType("text/html;charset=UTF-8");
 			JSONArray jsonArray = JSONArray.fromObject(list);

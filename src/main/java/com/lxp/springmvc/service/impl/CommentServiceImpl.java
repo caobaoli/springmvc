@@ -36,8 +36,8 @@ public class CommentServiceImpl implements CommentService {
 
 	@Transactional(readOnly = true)
 	@Override
-	public List<Comment> findAllComment() {
-		return commentDao.selectComment();
+	public List<Comment> findCommentById(String titleId) {
+		return commentDao.selectComment(titleId);
 	}
 
 }

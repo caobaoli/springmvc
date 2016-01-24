@@ -18,8 +18,8 @@
 	</insert>
 	
 	<!-- Select Comment -->
-	<select id="selectComment"  resultMap="resultListComment">
-	    SELECT ID, TITLEID, COMMENT, USER, DATE FROM COMMENT ORDER BY DATE DESC LIMIT 0,10
+	<select id="selectComment" parameterType="java.lang.String"  resultMap="resultListComment">
+	    SELECT ID, TITLEID, COMMENT, USER, DATE FROM COMMENT WHERE TITLEID = #{titleId} ORDER BY DATE DESC LIMIT 0,10
 	</select>
 	
 	

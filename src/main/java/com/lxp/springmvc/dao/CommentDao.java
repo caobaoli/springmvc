@@ -2,6 +2,8 @@ package com.lxp.springmvc.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.lxp.springmvc.vo.Comment;
 
 /**
@@ -13,5 +15,5 @@ import com.lxp.springmvc.vo.Comment;
  */
 public interface CommentDao {
 	public Integer insertComment(Comment comment);
-	public List<Comment> selectComment();
+	public List<Comment> selectComment(@Param("titleId") String titleId);
 }
