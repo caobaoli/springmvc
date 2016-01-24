@@ -132,5 +132,8 @@
 	</form>
 	<div id="loading">数据交互中...</div>
 	<div id="error">请登录后操作...</div>
+	<div id="questionnull">搜索问题框不能为空...</div>
+	<div id="searchednull">关键字搜索无结果，请换关键字搜索...</div>
+	<div id="commentNull">评论框不能为空...</div>
 </body>
 </html>

@@ -148,6 +148,32 @@ body {
 	text-indent:40px;
 	color:#666;
 }
+#commentNull {
+	background:url(../img/error.png) no-repeat 20px center;
+	line-height:25px;
+	font-size:14px;
+	font-weight:bold;
+	text-indent:40px;
+	color:#666;
+}
+
+#questionnull {
+	background:url(../img/error.png) no-repeat 20px center;
+	line-height:25px;
+	font-size:14px;
+	font-weight:bold;
+	text-indent:40px;
+	color:#666;
+}
+
+#searchednull {
+	background:url(../img/error.png) no-repeat 20px center;
+	line-height:25px;
+	font-size:14px;
+	font-weight:bold;
+	text-indent:40px;
+	color:#666;
+}
 
 /***显示问题css***/
 #expires {
