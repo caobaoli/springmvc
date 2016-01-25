@@ -328,7 +328,6 @@ body {
 	color:#225599; 
 	width:35px;
 	height:35px;
-	padding-left:12%;
 }
 /***************超链接-END*******************/
 
@@ -339,6 +338,20 @@ body {
 .contentquestion h4 {
 	font-weight:normal;
 	color: #225599; 
+}
+
+.hotquestion {
+	text-decoration: none;
+}
+ 
+.hotquestion h4 {
+	font-weight:normal;
+	color: #225599; 
+}
+
+.btn h4 {
+	font-weight:normal;
+	color: #225599;
 }
 
 .main_right h3 {

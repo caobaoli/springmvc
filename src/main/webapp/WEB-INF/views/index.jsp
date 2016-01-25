@@ -59,18 +59,17 @@
 			<div id="accordion">
 				<h3>近期热议</h3>
 				<div>
-					<div><a href="#" class="btn">内容1</a></div>
-					<div><a href="#" class="btn">内容2</a></div>
+					<a href="#" class="hotquestion"></a>
 				</div>
 				<h3>随便看看</h3>
 					<a href="#" class="contentquestion"></a>
 				<h3>个人信息</h3>
 				<div>
-					<p><a href="#" class="btn"  >个人基本信息</a></p>
+					<a href="#" class="btn"><h4>个人基本信息</h4></a>
 				</div>
 				<h3>我的校园</h3>
-				<div><a href="www.xawl.org" class="btn">西安文理学院官网</a></div>
-				<div><a href="#" class="btn">内容2</a></div>
+					<a href="http://www.xawl.org" class="btn"><h4>西安文理学院官网</h4></a>
+					<a href="http://www.xawl.org/info/iList.jsp?cat_id=10002" class="btn"><h4>学校简介</h4></a>
 			</div>
 		</div>
 	</div>

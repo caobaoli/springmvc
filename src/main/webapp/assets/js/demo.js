@@ -473,6 +473,19 @@ $(function () {
 		},
 	});
 	
+	$.ajax({
+		url : 'question/findhotquestion.do',
+		type : 'POST',
+		success : function (response, status, xhr) {
+			var json = $.parseJSON(response);
+			var html = '';
+			$.each(json, function (index, value) {
+				html += '<h4>' + value.title + '(' + value.count + ')' + '</h4>';
+			});
+			$('.hotquestion').append(html);
+		},
+	});
+	
 	
 	/**
 	 * 问题提出的dialog

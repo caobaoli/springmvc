@@ -33,8 +33,17 @@
 	    SELECT MAX(ID) FROM QUESTION
 	</select>
 	
+	<select id="selectCountComm" resultType="java.lang.Integer">
+	    SELECT COUNT(C.TITLEID) FROM (SELECT MAX(COM.TITLEID) AS MAXID FROM COMMENT COM,QUESTION QUE WHERE COM.TITLEID = QUE.ID) T,COMMENT C WHERE T.MAXID = C.TITLEID;
+	</select>
+	
 	<!-- Search Random Question -->
 	<select id="selectRanQuestion" parameterType="java.lang.Integer" resultMap="resultListQuestion">
 	    SELECT Q.ID, Q.TITLE, (SELECT COUNT(*) FROM COMMENT WHERE TITLEID=Q.ID) AS COUNT FROM QUESTION Q WHERE Q.ID <![CDATA[>=]]> #{ranParam} AND Q.ID <![CDATA[<=]]> #{ranParam}+1
+	</select>
+	
+	<!-- Search Max Comment Question -->
+	<select id="selectMaxQuestion" parameterType="java.lang.Integer" resultMap="resultListQuestion">
+	 SELECT C.ID, C.TITLE, C.COUNT FROM (SELECT Q.ID, Q.TITLE, (SELECT COUNT(*) FROM COMMENT WHERE TITLEID=Q.ID) AS COUNT FROM QUESTION Q) C WHERE C.COUNT <![CDATA[<=]]> #{maxParam} AND C.COUNT <![CDATA[>=]]> (#{maxParam}-3)
 	</select>
 </mapper>

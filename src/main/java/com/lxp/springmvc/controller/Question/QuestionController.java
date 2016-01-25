@@ -115,4 +115,17 @@ public class QuestionController {
 			out.print(jsonArray);
 		}
 	}
+	
+	/**
+	 * 近期热点
+	 */
+	@RequestMapping(value="findhotquestion")
+	public void findHotQuestion(HttpServletResponse response, PrintWriter out) {
+		List<Question> list = questionService.findMaxQuestion();
+		if(!list.isEmpty()) {
+			response.setContentType("text/html;charset=UTF-8");
+			JSONArray jsonArray = JSONArray.fromObject(list);
+			out.print(jsonArray);
+		}
+	}
 }
