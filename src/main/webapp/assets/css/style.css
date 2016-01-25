@@ -325,13 +325,25 @@ body {
 /**************超链接-START****************/
 .btn {
 	text-decoration: none;
-	color:#abcdef; 
+	color:#225599; 
 	width:35px;
 	height:35px;
 	padding-left:12%;
 }
 /***************超链接-END*******************/
 
+.contentquestion {
+	text-decoration: none;
+}
+ 
+.contentquestion h4 {
+	font-weight:normal;
+	color: #225599; 
+}
+
+.main_right h3 {
+	color: #666;
+}
 
 
 

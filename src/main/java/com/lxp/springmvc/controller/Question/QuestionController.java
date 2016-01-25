@@ -103,4 +103,16 @@ public class QuestionController {
 		}
 	}
 	
+	/**
+	 * 随便看看
+	 */
+	@RequestMapping(value="findranquestion")
+	public void findRanQuestion(HttpServletResponse response, PrintWriter out) {
+		List<Question> list = questionService.findRanQuestion();
+		if(!list.isEmpty()) {
+			response.setContentType("text/html;charset=UTF-8");
+			JSONArray jsonArray = JSONArray.fromObject(list);
+			out.print(jsonArray);
+		}
+	}
 }

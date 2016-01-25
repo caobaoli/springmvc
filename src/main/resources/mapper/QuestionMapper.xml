@@ -29,4 +29,12 @@
  			Q.TITLE, Q.CONTENT, Q.USER, Q.DATE FROM QUESTION Q WHERE Q.TITLE LIKE '%${questionKey}%' ORDER BY Q.DATE DESC LIMIT 0,10
 	</select>
 	
+	<select id="selectMaxId" resultType="java.lang.Integer">
+	    SELECT MAX(ID) FROM QUESTION
+	</select>
+	
+	<!-- Search Random Question -->
+	<select id="selectRanQuestion" parameterType="java.lang.Integer" resultMap="resultListQuestion">
+	    SELECT Q.ID, Q.TITLE, (SELECT COUNT(*) FROM COMMENT WHERE TITLEID=Q.ID) AS COUNT FROM QUESTION Q WHERE Q.ID <![CDATA[>=]]> #{ranParam} AND Q.ID <![CDATA[<=]]> #{ranParam}+1
+	</select>
 </mapper>

@@ -63,14 +63,13 @@
 					<div><a href="#" class="btn">内容2</a></div>
 				</div>
 				<h3>随便看看</h3>
-					<div><a href="#" class="btn">内容1</a></div>
-					<div><a href="#" class="btn">内容2</a></div>
+					<a href="#" class="contentquestion"></a>
 				<h3>个人信息</h3>
 				<div>
 					<p><a href="#" class="btn"  >个人基本信息</a></p>
 				</div>
 				<h3>我的校园</h3>
-				<div><a href="#" class="btn">内容1</a></div>
+				<div><a href="www.xawl.org" class="btn">西安文理学院官网</a></div>
 				<div><a href="#" class="btn">内容2</a></div>
 			</div>
 		</div>

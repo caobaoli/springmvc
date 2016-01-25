@@ -3,6 +3,7 @@ package com.lxp.springmvc.service.impl;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,6 +45,18 @@ public class QuestionServiceImpl implements QuestionService {
 	@Override
 	public List<Question> searchQuestion(String questionKey) {
 		return questionDao.searchQuestion(questionKey);
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public List<Question> findRanQuestion() {
+		Integer maxId = this.questionDao.selectMaxId();
+		if(maxId != null) {
+			Random random = new Random(System.currentTimeMillis());
+			Integer ranParam = random.nextInt(maxId);
+			return this.questionDao.selectRanQuestion(ranParam);
+		}
+		return null;
 	}
 
 }

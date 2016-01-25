@@ -457,6 +457,21 @@ $(function () {
 		},
 	});
 	
+	/**
+	 * 加载主页左边内容
+	 */
+	$.ajax({
+		url : 'question/findranquestion.do',
+		type : 'POST',
+		success : function (response, status, xhr) {
+			var json = $.parseJSON(response);
+			var html = '';
+			$.each(json, function (index, value) {
+				html += '<h4>' + value.title + '(' + value.count + ')' + '</h4>';
+			});
+			$('.contentquestion').append(html);
+		},
+	});
 	
 	
 	/**
@@ -471,12 +486,13 @@ $(function () {
 		buttons : {
 			'发布' : function () {
 				if($('.uEditorIframe').contents().find('#iframeBody').html()) {
+					var contentdata = $('.uEditorIframe').contents().find('#iframeBody').html() + '.';
 					$(this).ajaxSubmit({
 						url : 'question/addquestion.do',
 						type : 'POST',
 						data : {
 							user : $.cookie('user'),
-							content : $('.uEditorIframe').contents().find('#iframeBody').html(),
+							content : contentdata,
 						},
 						beforeSubmit : function (formData, jqForm, options) {
 							$('#loading').dialog('open');

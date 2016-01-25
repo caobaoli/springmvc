@@ -17,4 +17,6 @@ public interface QuestionDao {
 	public Integer insertQuestion(Question question);
 	public List<Question> selectQuestion();
 	public List<Question> searchQuestion(@Param("questionKey")String questionKey);
+	public Integer selectMaxId();
+	public List<Question> selectRanQuestion(@Param("ranParam")Integer ranParam);
 }

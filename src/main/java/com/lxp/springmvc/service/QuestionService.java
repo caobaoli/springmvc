@@ -15,4 +15,5 @@ public interface QuestionService {
 	public Integer addQuestion(Question question);
 	public List<Question> findAllQuestion();
 	public List<Question> searchQuestion(String questionKey);
+	public List<Question> findRanQuestion();
 }
