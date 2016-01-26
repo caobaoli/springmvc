@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>文理论坛</title>
+<title>文理论坛-首页</title>
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="this is my page">
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -59,17 +59,17 @@
 			<div id="accordion">
 				<h3>近期热议</h3>
 				<div>
-					<a href="#" class="hotquestion"></a>
+					<span class="hotquestion"></span>
 				</div>
 				<h3>随便看看</h3>
-					<a href="#" class="contentquestion"></a>
+					<span class="contentquestion"></span>
 				<h3>个人信息</h3>
 				<div>
 					<a href="#" class="btn"><h4>个人基本信息</h4></a>
 				</div>
 				<h3>我的校园</h3>
-					<a href="http://www.xawl.org" class="btn"><h4>西安文理学院官网</h4></a>
-					<a href="http://www.xawl.org/info/iList.jsp?cat_id=10002" class="btn"><h4>学校简介</h4></a>
+					<a href="http://www.xawl.org" class="btn" target="_blank"><h4>西安文理学院官网</h4></a>
+					<a href="http://www.xawl.org/info/iList.jsp?cat_id=10002" class="btn" target="_blank"><h4>学校简介</h4></a>
 			</div>
 		</div>
 	</div>

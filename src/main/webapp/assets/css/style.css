@@ -331,20 +331,20 @@ body {
 }
 /***************超链接-END*******************/
 
-.contentquestion {
+.contentquestion a {
 	text-decoration: none;
 }
  
-.contentquestion h4 {
+.contentquestion a h4 {
 	font-weight:normal;
 	color: #225599; 
 }
 
-.hotquestion {
+.hotquestion a {
 	text-decoration: none;
 }
  
-.hotquestion h4 {
+.hotquestion a h4 {
 	font-weight:normal;
 	color: #225599; 
 }
@@ -356,6 +356,10 @@ body {
 
 .main_right h3 {
 	color: #666;
+}
+
+.removeline {
+	text-decoration: none;
 }
 
 

@@ -59,7 +59,7 @@ public class QuestionServiceImpl implements QuestionService {
 		return null;
 	}
 
-	@Transactional(readOnly=true)
+	@Transactional(readOnly = true)
 	@Override
 	public List<Question> findMaxQuestion() {
 		Integer maxCommCount = this.questionDao.selectCountComm();
@@ -67,6 +67,12 @@ public class QuestionServiceImpl implements QuestionService {
 			return this.questionDao.selectMaxQuestion(maxCommCount);
 		}
 		return null;
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public Question findQuestionById(Integer questionId) {
+		return this.questionDao.selectQuestionById(questionId);
 	}
 
 }

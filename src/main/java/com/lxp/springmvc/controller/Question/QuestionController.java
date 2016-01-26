@@ -1,3 +1,10 @@
+/**
+ * @Package com.lxp.springmvc.controller.Question
+ * @Class com.lxp.springmvc.controller.Question.QuestionController
+ * @Description: TODO
+ * @Author LiXiaoPeng
+ * Copyright  Corporation 2015
+ */
 package com.lxp.springmvc.controller.Question;
 
 import java.io.PrintWriter;
@@ -14,13 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.lxp.springmvc.service.QuestionService;
 import com.lxp.springmvc.vo.Question;
 
-/**
- * @Package com.lxp.springmvc.controller.Question
- * @Class com.lxp.springmvc.controller.Question.QuestionController
- * @Description: TODO
- * @Author LiXiaoPeng
- * Copyright  Corporation 2015
- */
 @Controller
 @RequestMapping(value="question")
 public class QuestionController {
@@ -125,6 +125,16 @@ public class QuestionController {
 		if(!list.isEmpty()) {
 			response.setContentType("text/html;charset=UTF-8");
 			JSONArray jsonArray = JSONArray.fromObject(list);
+			out.print(jsonArray);
+		}
+	}
+	
+	@RequestMapping(value="findQuestionById")
+	public void findQuestionById(HttpServletResponse response, PrintWriter out, String questionId) {
+		Question question = questionService.findQuestionById(new Integer(questionId));
+		if(question != null) {
+			response.setContentType("text/html;charset=UTF-8");
+			JSONArray jsonArray = JSONArray.fromObject(question);
 			out.print(jsonArray);
 		}
 	}

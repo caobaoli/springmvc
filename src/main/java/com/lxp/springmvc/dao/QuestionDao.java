@@ -21,4 +21,5 @@ public interface QuestionDao {
 	public Integer selectCountComm();
 	public List<Question> selectRanQuestion(@Param("ranParam")Integer ranParam);
 	public List<Question> selectMaxQuestion(@Param("maxParam")Integer maxParam);
+	public Question selectQuestionById(@Param("questionId") Integer questionId);
 }

@@ -34,7 +34,7 @@
 	</select>
 	
 	<select id="selectCountComm" resultType="java.lang.Integer">
-	    SELECT COUNT(C.TITLEID) FROM (SELECT MAX(COM.TITLEID) AS MAXID FROM COMMENT COM,QUESTION QUE WHERE COM.TITLEID = QUE.ID) T,COMMENT C WHERE T.MAXID = C.TITLEID;
+	    SELECT COUNT(T.COUN) FROM (SELECT COUNT(COM.TITLEID) AS COUN FROM COMMENT COM,QUESTION QUE WHERE COM.TITLEID = QUE.ID GROUP BY COM.TITLEID) T;
 	</select>
 	
 	<!-- Search Random Question -->
@@ -44,6 +44,12 @@
 	
 	<!-- Search Max Comment Question -->
 	<select id="selectMaxQuestion" parameterType="java.lang.Integer" resultMap="resultListQuestion">
-	 SELECT C.ID, C.TITLE, C.COUNT FROM (SELECT Q.ID, Q.TITLE, (SELECT COUNT(*) FROM COMMENT WHERE TITLEID=Q.ID) AS COUNT FROM QUESTION Q) C WHERE C.COUNT <![CDATA[<=]]> #{maxParam} AND C.COUNT <![CDATA[>=]]> (#{maxParam}-3)
+	 	SELECT C.ID, C.TITLE, C.COUNT FROM (SELECT Q.ID, Q.TITLE, (SELECT COUNT(*) FROM COMMENT WHERE TITLEID=Q.ID) AS COUNT FROM QUESTION Q) C WHERE C.COUNT <![CDATA[<=]]> #{maxParam} AND C.COUNT <![CDATA[>=]]> (#{maxParam}-1)
+	</select>
+	
+	<!-- Search Question By Id -->
+	<select id="selectQuestionById" parameterType="java.lang.Integer" resultType="Question">
+	    SELECT Q.ID, (SELECT COUNT(*) FROM COMMENT WHERE TITLEID=Q.ID) AS COUNT,
+ 			Q.TITLE, Q.CONTENT, Q.USER, Q.DATE FROM QUESTION Q WHERE Q.ID = #{questionId}
 	</select>
 </mapper>

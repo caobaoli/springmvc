@@ -17,4 +17,5 @@ public interface QuestionService {
 	public List<Question> searchQuestion(String questionKey);
 	public List<Question> findRanQuestion();
 	public List<Question> findMaxQuestion();
+	public Question findQuestionById(Integer questionId);
 }

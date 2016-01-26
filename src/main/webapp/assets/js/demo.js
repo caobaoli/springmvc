@@ -9,6 +9,7 @@ $(function () {
 		},
 	});
 	
+	/***************************************************搜索逻辑 Start****************************************************************/
 	$('#search_button').click(function() {
 		if($.cookie('user')) {
 			if($('#searchQuestion').val()) {
@@ -25,7 +26,7 @@ $(function () {
 							var arr = [];
 							var summary = [];
 							$.each(json, function (index, value) {
-								html += '<h4>' + value.user + ' 发表于 ' + value.date + '</h4><h3>' + value.title + '</h3><div class="editor">' + value.content + '</div><div class="bottom"><span class="comment" data-id="'+ value.id +'">('+ value.count +')条评论</span><span class="up">收起</span></div><hr noshade="noshade" size="1" /><div class="comment_list"></div>';
+								html += '<h4>' + value.user + ' 发表于 ' + value.date + '</h4>' + '<a href="detail.do?titleId='+ value.id +  '" target="_blank" class="removeline">' + '<h3>' + value.title + '</h3>'+'</a><div class="editor">' + value.content + '</div><div class="bottom"><span class="comment" data-id="'+ value.id +'">('+ value.count +')条评论</span><span class="up">收起</span></div><hr noshade="noshade" size="1" /><div class="comment_list"></div>';
 							});
 							$('.content').html(html);
 							
@@ -87,6 +88,7 @@ $(function () {
 														});
 														$('.comment_list').eq(index).append('<form><dl class="comment_add"><dt><textarea name="comment" id="comment"></textarea></dt><dd><input type="hidden" name="titleid" value="' + $(comment_this).attr('data-id') + '" /><input type="hidden" name="user" value="' + $.cookie('user') + '" /><input type="button" value="发表" /></dd></dl></form>');
 														$('.comment_list').eq(index).find('input[type=button]').button().click(function () {
+															alert('h');
 															if($('#comment').val()) {
 																var _this = this;
 																$('.comment_list').eq(index).find('form').ajaxSubmit({
@@ -200,7 +202,7 @@ $(function () {
 			}, 1000);
 		}
 	});
-	
+	/***************************************************搜索逻辑 End****************************************************************/
 	
 	
 	/**
@@ -212,6 +214,7 @@ $(function () {
 		}
 	});
 	
+	/*********************************************所有错误消息 Start*****************************************************/
 	/**
 	 * 未登录不可操作
 	 */
@@ -292,10 +295,9 @@ $(function () {
 		width : 250,
 		height : 50,
 	}).parent().find('.ui-widget-header').hide();
+	/*********************************************所有错误消息 End*****************************************************/
 	
-	/**
-	 * 加载问题
-	 */
+	/*********************************************加载所有问题 Start***************************************************/
 	$.ajax({
 		url : 'question/findquestion.do',
 		type : 'POST',
@@ -305,7 +307,7 @@ $(function () {
 			var arr = [];
 			var summary = [];
 			$.each(json, function (index, value) {
-				html += '<h4>' + value.user + ' 发表于 ' + value.date + '</h4><h3>' + value.title + '</h3><div class="editor">' + value.content + '</div><div class="bottom"><span class="comment" data-id="'+ value.id +'">('+ value.count +')条评论</span><span class="up">收起</span></div><hr noshade="noshade" size="1" /><div class="comment_list"></div>';
+				html += '<h4>' + value.user + ' 发表于 ' + value.date + '</h4>' + '<a href="detail.do?titleId='+ value.id +  '" target="_blank" class="removeline">' + '<h3>' + value.title + '</h3>' + '</a><div class="editor">' + value.content + '</div><div class="bottom"><span class="comment" data-id="'+ value.id +'">('+ value.count +')条评论</span><span class="up">收起</span></div><hr noshade="noshade" size="1" /><div class="comment_list"></div>';
 			});
 			$('.content').append(html);
 			
@@ -456,10 +458,9 @@ $(function () {
 			
 		},
 	});
+	/*********************************************加载所有问题 End***************************************************/
 	
-	/**
-	 * 加载主页左边内容
-	 */
+	/*********************************************加载主页左边内容 Start**********************************************/
 	$.ajax({
 		url : 'question/findranquestion.do',
 		type : 'POST',
@@ -467,7 +468,7 @@ $(function () {
 			var json = $.parseJSON(response);
 			var html = '';
 			$.each(json, function (index, value) {
-				html += '<h4>' + value.title + '(' + value.count + ')' + '</h4>';
+				html += '<a href="detail.do?titleId='+ value.id +  '" target="_blank">' + '<h4>' + value.title + '(' + value.count + ')' + '</h4>' + '</a>';
 			});
 			$('.contentquestion').append(html);
 		},
@@ -480,16 +481,15 @@ $(function () {
 			var json = $.parseJSON(response);
 			var html = '';
 			$.each(json, function (index, value) {
-				html += '<h4>' + value.title + '(' + value.count + ')' + '</h4>';
+				html += '<a href="detail.do?titleId='+ value.id +  '" target="_blank">' + '<h4>' + value.title + '(' + value.count + ')' + '</h4>' + '</a>';
 			});
 			$('.hotquestion').append(html);
 		},
 	});
+	/*********************************************加载主页左边内容 End**********************************************/
 	
 	
-	/**
-	 * 问题提出的dialog
-	 */
+	/*********************************************问题提出的dialog Start******************************************/
 	$('#question').dialog({
 		autoOpen : false,
 		modal : true,
@@ -538,6 +538,7 @@ $(function () {
 			}
 		}
 	});
+	/*********************************************问题提出的dialog End******************************************/
 	
 	/**
 	 * 文本域
@@ -549,7 +550,7 @@ $(function () {
 	if ($.cookie('user')) {
 		$('#member, #logout').show();
 		$('#reg_a, #login_a').hide();
-		$('#member').html($.cookie('user'));
+		$('#member').html('欢迎：'+$.cookie('user'));
 	} else {
 		$('#member, #logout').hide();
 		$('#reg_a, #login_a').show();
@@ -579,14 +580,12 @@ $(function () {
 		$('#reg').dialog('open');
 	});
 
-	/**
-	 * 用户注册
-	 */
+	/******************************************************用户注册 Start***********************************************/
 	$('#reg').dialog({
 		autoOpen : false,
 		modal : true,
 		resizable : false,
-		width : 320,
+		width : 340,
 		height : 340,
 		closeText : '关闭',
 		buttons : {
@@ -698,6 +697,7 @@ $(function () {
 			},	
 		}
 	});
+	/******************************************************用户注册 Start***********************************************/
 	
 	$('#date').datepicker({
 		changeMonth : true,
@@ -715,11 +715,6 @@ $(function () {
 		delay : 0,
 		autoFocus : true,
 		source : function (request, response) {
-			//获取用户输入的内容
-			//alert(request.term);
-			//绑定数据源的
-			//response(['aa', 'aaaa', 'aaaaaa', 'bb']);
-			
 			var hosts = ['126.com', 'qq.com', '163.com', 'sina.com.cn','gmail.com', 'hotmail.com'],
 				term = request.term,		//获取用户输入的内容
 				name = term,				//邮箱的用户名
@@ -737,11 +732,6 @@ $(function () {
 			}
 			
 			if (name) {
-				//如果用户已经输入@和后面的域名，
-				//那么就找到相关的域名提示，比如bnbbs@1，就提示bnbbs@163.com
-				//如果用户还没有输入@或后面的域名，
-				//那么就把所有的域名都提示出来
-				
 				var findedHosts = (host ? $.grep(hosts, function (value, index) {
 						return value.indexOf(host) > -1
 					}) : hosts),
@@ -756,9 +746,7 @@ $(function () {
 		},	
 	});
 	
-	/**
-	 * 用户登录
-	 */
+	/************************************************用户登录 Start***********************************************************/
 	$('#login_a').click(function () {
 		$('#login').dialog('open');
 	});
@@ -882,6 +870,7 @@ $(function () {
 			},
 		}
 	});
+	/************************************************用户登录 End***********************************************************/
 	
 });
 
