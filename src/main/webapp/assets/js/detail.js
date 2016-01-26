@@ -42,7 +42,6 @@ $(function () {
 										$('.comment_list').eq(index).append('<form><dl class="comment_add"><dt><textarea name="comment" id="comment"></textarea></dt><dd><input type="hidden" name="titleid" value="' + $(comment_this).attr('data-id') + '" /><input type="hidden" name="user" value="' + $.cookie('user') + '" /><input type="button" value="发表" /></dd></dl></form>');
 										$('.comment_list').eq(index).find('input[type=button]').button().click(function () {
 											if($('#comment').val()) {
-												alert('');
 												var _this = this;
 												$('.comment_list').eq(index).find('form').ajaxSubmit({
 													url : 'comment/addcomment.do',
