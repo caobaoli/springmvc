@@ -16,6 +16,7 @@ public class Comment implements Serializable {
 	private String comment;
 	private String user;
 	private String date;
+	private Integer count;
 	public Integer getId() {
 		return id;
 	}
@@ -45,6 +46,12 @@ public class Comment implements Serializable {
 	}
 	public void setDate(String date) {
 		this.date = date;
+	}
+	public Integer getCount() {
+		return count;
+	}
+	public void setCount(Integer count) {
+		this.count = count;
 	}
 	@Override
 	public String toString() {

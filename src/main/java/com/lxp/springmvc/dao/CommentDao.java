@@ -15,5 +15,6 @@ import com.lxp.springmvc.vo.Comment;
  */
 public interface CommentDao {
 	public Integer insertComment(Comment comment);
-	public List<Comment> selectComment(@Param("titleId") String titleId);
+	public List<Comment> selectComment(@Param("titleId") String titleId, @Param("pageBegin") Integer pageBegin, @Param("pageEnd") Integer pageEnd);
+	public Integer selectCommentCount(@Param("titleId") String titleId);
 }

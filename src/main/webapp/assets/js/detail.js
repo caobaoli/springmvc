@@ -21,6 +21,7 @@ $(function () {
 			$.each($('.bottom'), function (index, value) {
 				$(this).on('click', '.comment', function () {
 					var comment_this = this;
+					var page = 0;
 					if ($.cookie('user')) {
 						if (!$('.comment_list').eq(index).has('form').length) {
 							$.ajax({
@@ -28,6 +29,7 @@ $(function () {
 								type:'POST',
 								data: {
 									titleId:$(comment_this).attr('data-id'),
+									page : page,
 								},
 								beforeSend : function (jqXHR, settings) {
 									$('.comment_list').eq(index).append('<dl class="comment_load"><dd>正在加载评论</dd></dl>');
@@ -35,10 +37,51 @@ $(function () {
 								success : function (response, status) {
 									$('.comment_list').eq(index).find('.comment_load').hide();
 									if($.parseJSON(response)) {
+										var count = 0;
 										var json_comment = $.parseJSON(response);
 										$.each(json_comment, function (index2, value) {
+											count = value.count;
 											$('.comment_list').eq(index).append('<dl class="comment_content"><dt>' + value.user + ' 评论： ' + '</dt><dd>' + value.comment + '</dd><dd class="date">' + value.date + '</dd></dl>');
 										});
+										/****/
+										page++;
+										if(count > 5) {
+											$('.comment_list').eq(index).append('<dl><dd><span class="load_more">加载剩余评论</span></dd></dl>');
+										}
+										if (page*5 > count) {
+											$('.comment_list').eq(index).find('.load_more').off('click');
+											$('.comment_list').eq(index).find('.load_more').hide();
+										}
+										$('.comment_list').eq(index).find('.load_more').button().on('click', function () {
+											$('.comment_list').eq(index).find('.load_more').button('disable');
+											$.ajax({
+												url : 'comment/findcomment.do',
+												type : 'POST',
+												data : {
+													titleId : $(comment_this).attr('data-id'),
+													page : page,
+												},
+												beforeSend : function (jqXHR, settings) {
+													$('.comment_list').eq(index).find('.load_more').html('<img src="assets/img/more_load.gif" />');
+												},
+												success : function (response, status) {
+													var json_comment_more = $.parseJSON(response);
+													$.each(json_comment_more, function (index3, value) {
+														$('.comment_list').eq(index).find('.comment_content').last().after('<dl class="comment_content"><dt>' + value.user + ' 评论： ' + '</dt><dd>' + value.comment + '</dd><dd class="date">' + value.date + '</dd></dl>');
+													});
+													$('.comment_list').eq(index).find('.load_more').button('enable');
+													page++;
+													if(count >page*5+5) {
+														$('.comment_list').eq(index).find('.load_more').html('加载剩余评论');
+													}
+													if (page*5+5 > count) {
+														$('.comment_list').eq(index).find('.load_more').off('click');
+														$('.comment_list').eq(index).find('.load_more').hide();
+													}
+												}
+											});
+										});
+										/****/
 										$('.comment_list').eq(index).append('<form><dl class="comment_add"><dt><textarea name="comment" id="comment"></textarea></dt><dd><input type="hidden" name="titleid" value="' + $(comment_this).attr('data-id') + '" /><input type="hidden" name="user" value="' + $.cookie('user') + '" /><input type="button" value="发表" /></dd></dl></form>');
 										$('.comment_list').eq(index).find('input[type=button]').button().click(function () {
 											if($('#comment').val()) {

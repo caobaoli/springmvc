@@ -13,5 +13,5 @@ import com.lxp.springmvc.vo.Comment;
  */
 public interface CommentService {
 	public Integer addComment(Comment comment);
-	public List<Comment> findCommentById(String titleId);
+	public List<Comment> findCommentById(String titleId,Integer page);
 }

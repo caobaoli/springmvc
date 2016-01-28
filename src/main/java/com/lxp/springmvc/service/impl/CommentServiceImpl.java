@@ -36,8 +36,20 @@ public class CommentServiceImpl implements CommentService {
 
 	@Transactional(readOnly = true)
 	@Override
-	public List<Comment> findCommentById(String titleId) {
-		return commentDao.selectComment(titleId);
+	public List<Comment> findCommentById(String titleId, Integer page) {
+		Integer pageBegin = page*5;
+		Integer pageEnd = page*5+5;
+		Integer count = this.commentDao.selectCommentCount(titleId);
+		if(pageEnd > 5) {
+			pageEnd = count; 
+		}
+		List<Comment> list = commentDao.selectComment(titleId, pageBegin, pageEnd);
+		for (Comment comment : list) {
+			if(count != null) {
+				comment.setCount(count);
+			}
+		}
+		return list;
 	}
 
 }

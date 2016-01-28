@@ -362,7 +362,15 @@ body {
 	text-decoration: none;
 }
 
-
+.content .load_more {
+	width:100%;
+	margin:10px 0 0 0;
+	height:30px;
+	line-height:30px;
+}
+.content .load_more img {
+	padding:5px 0 0 0;
+}
 
 
 

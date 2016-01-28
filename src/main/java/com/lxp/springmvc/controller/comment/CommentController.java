@@ -46,13 +46,13 @@ public class CommentController {
 	 */
 	@SuppressWarnings("static-access")
 	@RequestMapping(value="findcomment")
-	public void findComment(HttpServletResponse response, PrintWriter out,String titleId) {
+	public void findComment(HttpServletResponse response, PrintWriter out,String titleId, Integer page) {
 			try {
 				Thread.currentThread().sleep(1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-		List<Comment> list = commentService.findCommentById(titleId);
+		List<Comment> list = commentService.findCommentById(titleId, page);
 		if(!list.isEmpty()) {
 			response.setContentType("text/html;charset=UTF-8");
 			JSONArray jsonArray = JSONArray.fromObject(list);
