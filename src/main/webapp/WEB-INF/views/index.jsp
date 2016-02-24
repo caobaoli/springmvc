@@ -50,7 +50,7 @@
 		<div class="main_left">
 			<div id="tabs">
 				<div class="newmess">最新动态</div>
-				<div class="operate"><a id="operate">设置</a></div>
+				<div class="operate"><a id="operate">文理动态</a></div>
 				<hr noshade="noshade" size="1" />
 			</div>
 			<div class="content"></div>

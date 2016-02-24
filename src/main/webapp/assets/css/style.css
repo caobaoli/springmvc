@@ -316,10 +316,17 @@ body {
     font-weight: 700;
 }
 .operate {
-	margin-left: 530px;
-	color: #999;
-	width: 30px;
+	margin-left: 520px;
+	width: 60px;
+	cursor:pointer;
+	font-size: 14px;
+    font-weight: 700;
+} 
+.operate a {
+	color: #666 !important;
+	text-decoration: none;
 }
+
 /***********最新动态及设置（页首）-END***************/
 
 /**************超链接-START****************/

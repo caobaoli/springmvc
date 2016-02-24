@@ -6,11 +6,11 @@
 
 	<!-- Insert User -->
 	<insert id="insertUser" parameterType="User" keyProperty="id">
-		INSERT INTO USER(ID, ACCOUNT, PASS, EMAIL, SEX, BIRTHDAY) VALUE(#{id}, #{account}, #{pass}, #{email}, #{sex}, #{date})
+		INSERT INTO USER(ID, ACCOUNT, PASS, EMAIL, SEX, BIRTHDAY) VALUE(#{id}, #{account}, #{pass}, #{email}, #{sex}, #{birthday})
 	</insert>
 	
 	<!-- Select BY Account -->
-	<select id="selectByAccount" parameterType="string" resultType="User">
+	<select id="selectByAccount" parameterType="java.lang.String" resultType="User">
 	    SELECT ID, ACCOUNT, PASS, EMAIL, SEX, BIRTHDAY FROM USER WHERE ACCOUNT = #{account}
 	</select>
 

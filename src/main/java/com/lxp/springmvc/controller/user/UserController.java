@@ -1,10 +1,13 @@
 package com.lxp.springmvc.controller.user;
 
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.lxp.springmvc.service.UserService;
 import com.lxp.springmvc.vo.User;
@@ -22,7 +25,7 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
-	
+	private User user;
 	/**
 	 * 用户注册逻辑
 	 */
@@ -67,4 +70,20 @@ public class UserController {
 			}
 		}
 	}
+	
+	@RequestMapping(value="user_info")
+	public ModelAndView userInfo(String account) {
+		user = userService.findByAccount(account);
+		if(user.getSex() != null && !"".equals(user.getSex())) {
+			if("male".equals(user.getSex())) {
+				user.setSex("男");
+			} else if("famale".equals(user.getSex())) {
+				user.setSex("女");
+			}
+		}
+		Map<String, Object> model = new HashMap<String, Object>();
+		model.put("user", user);
+		return new ModelAndView("user_info",model);
+	}
+
 }

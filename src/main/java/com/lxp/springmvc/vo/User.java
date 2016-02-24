@@ -17,6 +17,7 @@ public class User implements Serializable {
 	private String email;
 	private String sex;
 	private String date;
+	private String birthday;
 	public String getId() {
 		return id;
 	}
@@ -57,22 +58,17 @@ public class User implements Serializable {
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
-	public User(String id, String account, String pass, String email,
-			String sex, String date) {
-		super();
-		this.id = id;
-		this.account = account;
-		this.pass = pass;
-		this.email = email;
-		this.sex = sex;
-		this.date = date;
+	public String getBirthday() {
+		return birthday;
+	}
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
 	}
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", account=" + account + ", pass=" + pass
-				+ ", email=" + email + ", sex=" + sex + ", date=" + date + "]";
+				+ ", email=" + email + ", sex=" + sex + ", date=" + date
+				+ ", birthday=" + birthday + "]";
 	}
-	
-	
 	
 }

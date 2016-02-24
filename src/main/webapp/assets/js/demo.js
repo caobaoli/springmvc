@@ -958,6 +958,18 @@ $(function () {
 	});
 	/************************************************用户登录 End***********************************************************/
 	
+	
+	$('.btn').click(function() {
+		if($.cookie('user')) {
+			self.location="user/user_info.do?account="+$.cookie('user'); 
+		} else {
+			$('#error').dialog('open');
+			setTimeout(function() {
+				$('#error').dialog('close');
+				$('#login').dialog('open');
+			}, 1000);
+		}
+	});
 });
 
 function replacePos(strObj, pos, replaceText) {
